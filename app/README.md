@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Integrations
+
+- **shadcn/ui** — UI components (`components.json`, `components/ui/`).
+- **Wallet Adapter (Anza)** — Solana multi-wallet connection ([anza-xyz/wallet-adapter](https://github.com/anza-xyz/wallet-adapter)); provider in `components/providers/SolanaProvider.tsx`, config in `config/wallet.ts`.
+
+See [docs/INTEGRATIONS.md](docs/INTEGRATIONS.md) for setup and usage details.
+
 ## Getting Started
 
 First, run the development server:

@@ -1,3 +1,4 @@
+import { SolanaProvider } from "@/components/providers/SolanaProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/siteConfig";
 import { Inter } from "next/font/google";
@@ -32,7 +33,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        <SolanaProvider>{children}</SolanaProvider>
         <Toaster />
       </body>
     </html>
