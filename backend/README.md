@@ -34,8 +34,18 @@ Default port: 3001. Override with `PORT`.
 |--------|------|-------------|
 | GET | /health | Health check |
 | POST | /academy/create-course | Create course (authority) |
+| POST | /academy/update-config | Rotate backend signer (authority) |
+| POST | /academy/update-course | Update course (authority) |
 | POST | /academy/complete-lesson | Complete lesson (backend signer) |
 | POST | /academy/finalize-course | Finalize course (backend signer) |
+| POST | /academy/issue-credential | Issue credential NFT (backend signer) |
+| POST | /academy/upgrade-credential | Upgrade credential (backend signer) |
+| POST | /academy/register-minter | Register minter (authority) |
+| POST | /academy/revoke-minter | Revoke minter (authority) |
+| POST | /academy/reward-xp | Reward XP (backend signer as minter) |
+| POST | /academy/create-achievement-type | Create achievement type (authority) |
+| POST | /academy/award-achievement | Award achievement (backend signer) |
+| POST | /academy/deactivate-achievement-type | Deactivate achievement type (authority) |
 
 ### Request bodies
 

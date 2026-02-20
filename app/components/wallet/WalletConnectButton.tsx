@@ -3,6 +3,7 @@
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useRef, useState, useEffect } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -57,6 +58,22 @@ export function WalletConnectButton() {
               }}
             >
               Change wallet
+            </button>
+            <button
+              type="button"
+              className={cn(
+                "flex w-full items-center rounded-lg px-4 py-2.5 text-left text-sm font-medium transition-colors",
+                "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+              )}
+              onClick={() => {
+                if (publicKey) {
+                  navigator.clipboard.writeText(publicKey.toBase58());
+                  toast.success("Address copied");
+                  setOpen(false);
+                }
+              }}
+            >
+              Copy address
             </button>
             <button
               type="button"

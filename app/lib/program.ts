@@ -44,6 +44,44 @@ export function getEnrollmentPda(
   return pda;
 }
 
+export function getMinterRolePda(
+  minter: PublicKey,
+  programId: PublicKey = PROGRAM_ID
+): PublicKey {
+  const [pda] = PublicKey.findProgramAddressSync(
+    [Buffer.from("minter"), minter.toBuffer()],
+    programId
+  );
+  return pda;
+}
+
+export function getAchievementTypePda(
+  achievementId: string,
+  programId: PublicKey = PROGRAM_ID
+): PublicKey {
+  const [pda] = PublicKey.findProgramAddressSync(
+    [Buffer.from("achievement"), Buffer.from(achievementId)],
+    programId
+  );
+  return pda;
+}
+
+export function getAchievementReceiptPda(
+  achievementId: string,
+  recipient: PublicKey,
+  programId: PublicKey = PROGRAM_ID
+): PublicKey {
+  const [pda] = PublicKey.findProgramAddressSync(
+    [
+      Buffer.from("achievement_receipt"),
+      Buffer.from(achievementId),
+      recipient.toBuffer(),
+    ],
+    programId
+  );
+  return pda;
+}
+
 export function getProgram(
   connection: Connection,
   wallet: WalletContextState

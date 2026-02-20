@@ -1,0 +1,24 @@
+"use client";
+
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
+import {
+  registerMinter,
+  type RegisterMinterParams,
+} from "@/lib/services/backend-api";
+
+export function useRegisterMinter() {
+  return useMutation({
+    mutationFn: async (params: RegisterMinterParams) => {
+      const result = await registerMinter(params);
+      if (result.error) throw new Error(result.error);
+      return result.tx!;
+    },
+    onSuccess: () => {
+      toast.success("Minter registered.");
+    },
+    onError: (err: Error) => {
+      toast.error(err.message);
+    },
+  });
+}
