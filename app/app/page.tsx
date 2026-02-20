@@ -1,5 +1,5 @@
 import { Logo } from "@/components/Logo";
-import { WalletConnectButton } from "@/components/WalletConnectButton";
+import { WalletConnectButton } from "@/components/wallet/WalletConnectButton";
 
 export default function HomePage() {
   return (

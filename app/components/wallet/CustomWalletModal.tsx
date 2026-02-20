@@ -13,6 +13,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
@@ -38,12 +39,13 @@ function WalletListItemRow({
         )}
       >
         {wallet.adapter.icon && (
-          <img
+          <Image
             src={wallet.adapter.icon}
             alt=""
-            className="h-6 w-6 shrink-0 rounded"
             width={24}
             height={24}
+            unoptimized
+            className="h-6 w-6 shrink-0 rounded"
           />
         )}
         <span className="flex-1 font-medium">{wallet.adapter.name}</span>
@@ -66,30 +68,16 @@ function CollapseSection({
   id: string;
   children: React.ReactNode;
 }) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
-
-  useLayoutEffect(() => {
-    if (!expanded) {
-      setHeight(0);
-      return;
-    }
-    const content = contentRef.current;
-    if (!content) return;
-    const id = requestAnimationFrame(() => setHeight(content.scrollHeight));
-    return () => cancelAnimationFrame(id);
-  }, [expanded, children]);
-
   return (
     <div
       id={id}
-      ref={wrapperRef}
-      className="overflow-hidden transition-[height] duration-200 ease-out"
-      style={{ height: expanded ? height : 0 }}
+      className={cn(
+        "grid transition-[grid-template-rows] duration-200 ease-out",
+        expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+      )}
       role="region"
     >
-      <div ref={contentRef}>{children}</div>
+      <div className="min-h-0 overflow-hidden">{children}</div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import { SolanaProvider } from "@/components/providers/SolanaProvider";
+import { QueryProvider } from "@/providers/QueryProvider";
+import { SolanaProvider } from "@/providers/SolanaProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/siteConfig";
 import { Inter } from "next/font/google";
@@ -30,10 +31,17 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
         <script
+          dangerouslySetInnerHTML={{
+            __html: `globalThis.litIssuedWarnings=globalThis.litIssuedWarnings||new Set();globalThis.litIssuedWarnings.add("Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.");`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <SolanaProvider>{children}</SolanaProvider>
+        <SolanaProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </SolanaProvider>
         <Toaster />
       </body>
     </html>
