@@ -42,12 +42,15 @@ export function WalletConnectButton() {
         {open && (
           <div
             className={cn(
-              "absolute right-0 top-full z-50 mt-1 min-w-[160px] rounded-md border border-border bg-popover py-1 shadow-md"
+              "absolute right-0 top-full z-50 mt-2 min-w-[200px] rounded-xl border border-border bg-card px-2 py-2 shadow-xl"
             )}
           >
             <button
               type="button"
-              className="w-full px-3 py-2 text-left text-sm hover:bg-accent hover:text-accent-foreground rounded-md"
+              className={cn(
+                "flex w-full items-center rounded-lg px-4 py-2.5 text-left text-sm font-medium transition-colors",
+                "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+              )}
               onClick={() => {
                 setOpen(false);
                 setVisible(true);
@@ -57,7 +60,10 @@ export function WalletConnectButton() {
             </button>
             <button
               type="button"
-              className="w-full px-3 py-2 text-left text-sm hover:bg-accent hover:text-accent-foreground rounded-md"
+              className={cn(
+                "flex w-full items-center rounded-lg px-4 py-2.5 text-left text-sm font-medium transition-colors",
+                "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+              )}
               onClick={() => {
                 setOpen(false);
                 disconnect();

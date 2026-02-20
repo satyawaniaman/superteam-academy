@@ -5,7 +5,7 @@ import {
   ConnectionProvider,
   WalletProvider as SolanaWalletProvider,
 } from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { CustomWalletModalProvider } from "@/components/wallet/CustomWalletModalProvider";
 import {
   AlphaWalletAdapter,
   AvanaWalletAdapter,
@@ -40,14 +40,11 @@ import {
   TorusWalletAdapter,
   TrezorWalletAdapter,
   TrustWalletAdapter,
-  UnsafeBurnerWalletAdapter,
   WalletConnectWalletAdapter,
   XDEFIWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { useMemo, type ReactNode } from "react";
 import { SOLANA_RPC_ENDPOINT } from "@/config/wallet";
-
-import "@solana/wallet-adapter-react-ui/styles.css";
 
 const walletConnectProjectId =
   process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? "";
@@ -90,7 +87,6 @@ export function SolanaProvider({ children }: { children: ReactNode }) {
       new TorusWalletAdapter(),
       new TrezorWalletAdapter(),
       new TrustWalletAdapter(),
-      new UnsafeBurnerWalletAdapter(),
       ...(walletConnectProjectId
         ? [
             new WalletConnectWalletAdapter({
@@ -107,7 +103,7 @@ export function SolanaProvider({ children }: { children: ReactNode }) {
   return (
     <ConnectionProvider endpoint={endpoint}>
       <SolanaWalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>{children}</WalletModalProvider>
+        <CustomWalletModalProvider>{children}</CustomWalletModalProvider>
       </SolanaWalletProvider>
     </ConnectionProvider>
   );
