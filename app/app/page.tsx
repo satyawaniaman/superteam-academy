@@ -1,15 +1,27 @@
-import { Logo } from "@/components/Logo";
-import { WalletConnectButton } from "@/components/wallet/WalletConnectButton";
+"use client";
+
+import {
+  Navbar,
+  HeroSection,
+  FeaturesSection,
+  CoursesSection,
+  AssessmentSection,
+  TestimonialsSection,
+  Footer,
+} from "@/components/landing";
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="flex items-center justify-between border-b border-border px-4 py-3">
-        <Logo />
-        <WalletConnectButton />
-      </header>
-      <main className="flex-1 p-4">
+    <div className="flex min-h-screen flex-col bg-background">
+      <Navbar />
+      <main className="flex-1">
+        <HeroSection />
+        <FeaturesSection />
+        <CoursesSection />
+        <AssessmentSection />
+        <TestimonialsSection />
       </main>
+      <Footer />
     </div>
   );
 }
